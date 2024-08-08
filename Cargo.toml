@@ -1,0 +1,20 @@
+[package]
+name = "zen_han_converter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+lazy_static = "1.4.0"
+
+[lib]
+name = "zen_han_converter"
+path = "src/lib.rs"
+
+[[bin]]
+name = "han2zen"
+path = "src/bin/han2zen.rs"
+
+[[bin]]
+name = "zen2han"
+path = "src/bin/zen2han.rs"
+
