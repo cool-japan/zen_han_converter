@@ -164,14 +164,22 @@ pub fn han_to_zen(text: &str, ascii: bool, digit: bool, kana: bool) -> String {
             result.push(*ASCII_HZ_TABLE.get(&c).unwrap());
         } else if digit && DIGIT_HZ_TABLE.contains_key(&c) {
             result.push(*DIGIT_HZ_TABLE.get(&c).unwrap());
-        } else if kana && c == 'ﾞ' && chars.peek().map_or(false, |&next| KANA_TEN_HZ_TABLE.contains_key(&next)) {
-            let next = chars.next().unwrap();
-            result.push(*KANA_TEN_HZ_TABLE.get(&next).unwrap());
-        } else if kana && c == 'ﾟ' && chars.peek().map_or(false, |&next| KANA_MARU_HZ_TABLE.contains_key(&next)) {
-            let next = chars.next().unwrap();
-            result.push(*KANA_MARU_HZ_TABLE.get(&next).unwrap());
-        } else if kana && KANA_HZ_TABLE.contains_key(&c) {
-            result.push(*KANA_HZ_TABLE.get(&c).unwrap());
+        } else if kana {
+            let next = chars.peek().cloned();
+            match (c, next) {
+                (c, Some('ﾞ')) if KANA_TEN_MAP.iter().any(|&(_, h)| h == c) => {
+                    chars.next(); // Consume the dakuten
+                    result.push(KANA_TEN_MAP.iter().find(|&&(_, h)| h == c).unwrap().0);
+                },
+                (c, Some('ﾟ')) if KANA_MARU_MAP.iter().any(|&(_, h)| h == c) => {
+                    chars.next(); // Consume the handakuten
+                    result.push(KANA_MARU_MAP.iter().find(|&&(_, h)| h == c).unwrap().0);
+                },
+                (c, _) if KANA_HZ_TABLE.contains_key(&c) => {
+                    result.push(KANA_HZ_TABLE[&c]);
+                },
+                _ => result.push(c),
+            }
         } else {
             result.push(c);
         }
