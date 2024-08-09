@@ -2,6 +2,12 @@
 name = "zen_han_converter"
 version = "0.1.0"
 edition = "2021"
+description = "A Rust library for converting between Zenkaku and Hankaku characters in Japanese text."
+repository = "https://github.com/cool-japan/zen_han_converter"
+keywords = ["japanese", "zenkaku", "hankaku", "conversion", "japan", "han2zen", "zen2han", "kana", "nihongo"]
+categories = ["text-processing", "localization"]
+license = "Apache-2.0"
+
 
 [dependencies]
 lazy_static = "1.4.0"
