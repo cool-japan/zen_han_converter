@@ -67,5 +67,5 @@ fn test_han_to_zen_dakuten() {
 
 #[test]
 fn test_han_to_zen_handakuten() {
-    assert_eq!(han_to_zen("ﾊﾟﾋﾟﾌﾟﾍﾟﾎﾟ", false, false, true), "パピプペポ");
+    assert_eq!(han_to_zen("ﾊﾟﾋﾟﾌﾟﾍﾟﾎﾟﾋﾟｬﾋﾟｭﾋﾟｮ", false, false, true), "パピプペポピャピュピョ");
 }
