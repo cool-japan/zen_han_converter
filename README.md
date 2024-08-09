@@ -1,5 +1,7 @@
 # Zen Han Converter
 
+[Japanese/“ú–{Œê](README.ja.md)
+
 Zen Han Converter is a Rust library and set of command-line tools for converting between Zenkaku (full-width) and Hankaku (half-width) characters in Japanese text. It supports conversion of ASCII characters, digits, and Kana characters.
 
 ## Features
